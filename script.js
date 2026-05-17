@@ -43,14 +43,27 @@ function alternarTema(){
 }
 
 // LEITURA DE VOZ
+let falaAtual;
+
 function lerTexto(){
 
-  const texto = document.body.innerText;
+  // Para qualquer leitura anterior
+  speechSynthesis.cancel();
 
-  const fala = new SpeechSynthesisUtterance(texto);
+  // Lê apenas o conteúdo principal
+  const conteudo = document.querySelector("main").innerText;
 
-  fala.lang = "pt-BR";
+  falaAtual = new SpeechSynthesisUtterance(conteudo);
 
-  speechSynthesis.speak(fala);
+  falaAtual.lang = "pt-BR";
+
+  speechSynthesis.speak(falaAtual);
+
+}
+
+// PARAR LEITURA
+function pararLeitura(){
+
+  speechSynthesis.cancel();
 
 }
